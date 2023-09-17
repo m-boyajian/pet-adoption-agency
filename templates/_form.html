@@ -1,0 +1,21 @@
+<!-- Creating a _form.html (or similar) file in a Flask application with WTForms is a common practice to promote code reusability and maintainability. This approach is often referred to as template partials or template includes. -->
+
+{{ form.hidden_tag() }}
+
+{% for field in form if field.widget.input_type != 'hidden'%}
+
+<div class='form-group'>
+  {{ field.label }}
+  {{ field(class="form-control") }}
+
+  <span>
+      {% if field.errors %}
+        {% for error in field.errors %}
+	        <b class="text-danger">{{ error }}</b>
+        {% endfor %}
+      {% endif %}
+    </span>
+
+</div>
+
+{% endfor %}
